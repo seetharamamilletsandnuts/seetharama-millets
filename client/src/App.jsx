@@ -6,7 +6,7 @@ import Products from "./pages/Products.jsx";
 import Cart from "./pages/Cart.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import Admin from "./pages/Admin.jsx";
-import Login from "./pages/Login.js";
+import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 
 function App() {
