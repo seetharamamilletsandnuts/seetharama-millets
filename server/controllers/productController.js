@@ -1,71 +1,49 @@
-import Product from "../models/Product.js";
+import Product from "../models/productModel.js";
 
-// Get all products
+// GET /api/products
 export const getProducts = async (req, res) => {
-  try {
-    const products = await Product.find({});
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
+  const products = await Product.find({});
+  res.json(products);
 };
 
-// Get single product
+// GET /api/products/:id
 export const getProductById = async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (product) res.json(product);
-    else res.status(404).json({ message: "Product not found" });
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404).json({ message: "Product not found" });
   }
 };
 
-// Admin: Create product
+// POST /api/products  (Admin only)
 export const createProduct = async (req, res) => {
-  const { name, description, category, image, prices } = req.body;
-  try {
-    const product = new Product({ name, description, category, image, prices });
-    const createdProduct = await product.save();
-    res.status(201).json(createdProduct);
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
+  const product = new Product(req.body);
+  const created = await product.save();
+  res.status(201).json(created);
 };
 
-// Admin: Update product
+// PUT /api/products/:id  (Admin only)
 export const updateProduct = async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id);
 
-    if (product) {
-      product.name = req.body.name || product.name;
-      product.description = req.body.description || product.description;
-      product.category = req.body.category || product.category;
-      product.image = req.body.image || product.image;
-      product.prices = req.body.prices || product.prices;
-
-      const updatedProduct = await product.save();
-      res.json(updatedProduct);
-    } else {
-      res.status(404).json({ message: "Product not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
+  if (product) {
+    Object.assign(product, req.body);
+    const updated = await product.save();
+    res.json(updated);
+  } else {
+    res.status(404).json({ message: "Product not found" });
   }
 };
 
-// Admin: Delete product
+// DELETE /api/products/:id  (Admin only)
 export const deleteProduct = async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (product) {
-      await product.deleteOne();
-      res.json({ message: "Product removed" });
-    } else {
-      res.status(404).json({ message: "Product not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    await product.deleteOne();
+    res.json({ message: "Product removed" });
+  } else {
+    res.status(404).json({ message: "Product not found" });
   }
 };
