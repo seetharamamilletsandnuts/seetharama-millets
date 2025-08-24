@@ -1,1 +1,35 @@
-{"name":"seetharama-server","version":"1.0.0","private":true}
+{
+  "name": "seetharama-millets-server",
+  "version": "1.0.0",
+  "description": "Backend server for Seetharama Millets and Nuts E-commerce",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "mongoose": "^7.6.0",
+    "nodemailer": "^6.9.8",
+    "razorpay": "^2.9.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  },
+  "keywords": [
+    "millets",
+    "nuts",
+    "dry fruits",
+    "ecommerce",
+    "backend",
+    "express",
+    "mongo"
+  ],
+  "author": "Seetharama Millets and Nuts",
+  "license": "MIT"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "seetharama-millets",
+  "version": "1.0.0",
+  "private": true,
+  "description": "E-commerce site for Seetharama Millets and Nuts - millets, dry fruits, and nuts online store.",
+  "scripts": {
+    "start": "npm run start --prefix client",
+    "server": "npm run dev --prefix server",
+    "client": "npm start --prefix client",
+    "install-all": "npm install --prefix client && npm install --prefix server"
+  },
+  "keywords": [
+    "millets",
+    "nuts",
+    "dry fruits",
+    "ecommerce",
+    "seetharama"
+  ],
+  "author": "Seetharama Millets and Nuts",
+  "license": "MIT"
+}
