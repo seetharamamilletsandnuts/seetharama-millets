@@ -2,30 +2,62 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import authRoutes from "./routes/auth.js";
-import productRoutes from "./routes/products.js";
-import orderRoutes from "./routes/orders.js";
-import adminRoutes from "./routes/admin.js";
+import productRoutes from "./routes/productRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import Product from "./models/Product.js";
 
 dotenv.config();
-const app = express();
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/admin", adminRoutes);
-
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ MongoDB connected"))
-.catch((err) => console.error("❌ MongoDB connection error:", err));
+app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(async () => {
+    console.log("✅ MongoDB connected");
+
+    // 🌱 Seed only if DB is empty
+    const count = await Product.countDocuments();
+    if (count === 0) {
+      console.log("🌱 Seeding sample products...");
+      await Product.insertMany([
+        {
+          name: "Foxtail Millet",
+          description: "Rich in fiber and protein, helps with digestion.",
+          price: 120,
+        },
+        {
+          name: "Little Millet",
+          description: "Gluten-free grain, good for diabetics.",
+          price: 90,
+        },
+        {
+          name: "Barnyard Millet",
+          description: "Low in calories, rich in iron and calcium.",
+          price: 110,
+        },
+        {
+          name: "Kodo Millet",
+          description: "Packed with antioxidants, boosts immunity.",
+          price: 100,
+        },
+        {
+          name: "Millet Mix with Nuts",
+          description: "Blend of millets and nuts for healthy snacks.",
+          price: 150,
+        },
+      ]);
+      console.log("✅ Sample products seeded");
+    }
+
+    app.listen(PORT, () =>
+      console.log(`🚀 Server running on port ${PORT}`)
+    );
+  })
+  .catch((err) => console.error("❌ MongoDB connection error:", err));

@@ -71,10 +71,14 @@ seetharama-millets/
 client/
 ├── public/
 │   └── favicon.ico
+client/
+├── index.html
+├── package.json
+├── vite.config.js
 ├── src/
-│   ├── App.js
-│   ├── index.js
-│   ├── api.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── index.css
 │   ├── pages/
 │   │   ├── Home.js
 │   │   ├── Products.js
@@ -87,6 +91,8 @@ client/
 │   │   ├── Footer.js
 │   │   └── ProductCard.js
 ├── package.json
+├── public/
+│   └── favicon.ico
 
 server/
 ├── index.js
