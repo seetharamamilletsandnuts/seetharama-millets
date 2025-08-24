@@ -1,17 +1,22 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import ProductList from './components/ProductList'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar.jsx";
+import Products from "./pages/Products.jsx";
+import Cart from "./pages/Cart.jsx";
+import Admin from "./pages/Admin.jsx";
 
 function App() {
   return (
-    <div>
+    <Router>
       <Navbar />
-      <main>
-        <h1 className="title">🌾 Seetharama Millets & Nuts</h1>
-        <ProductList />
-      </main>
-    </div>
-  )
+      <Routes>
+        <Route path="/" element={<h1>Welcome to Seetharama Millets 🌾</h1>} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

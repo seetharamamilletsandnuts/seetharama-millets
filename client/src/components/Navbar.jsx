@@ -1,16 +1,15 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav className="navbar">
-      <h2>Seetharama Millets</h2>
-      <ul>
-        <li>Home</li>
-        <li>Products</li>
-        <li>About</li>
-      </ul>
+    <nav style={{ padding: "10px", background: "#eee" }}>
+      <Link to="/">Home</Link> |{" "}
+      <Link to="/products">Products</Link> |{" "}
+      <Link to="/cart">Cart</Link> |{" "}
+      <Link to="/admin">Admin</Link>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

@@ -13,7 +13,8 @@ function Admin() {
 
   return (
     <div>
-      <h2>Admin Panel</h2>
+      <h1>Admin Dashboard</h1>
+      <p>From here you can add/remove products, update prices, and manage orders.</p>
       <input placeholder="Name" onChange={(e) => setName(e.target.value)} /><br />
       <input placeholder="Description" onChange={(e) => setDesc(e.target.value)} /><br />
       <input placeholder="Price" onChange={(e) => setPrice(e.target.value)} /><br />
