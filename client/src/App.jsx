@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
-
 import Home from "./pages/Home.jsx";
 import Products from "./pages/Products.jsx";
 import Cart from "./pages/Cart.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import Admin from "./pages/Admin.jsx";
-import Login from "./pages/Login.jsx";
+import Login from "./pages/Login.js";
 import Register from "./pages/Register.jsx";
 
 function App() {
